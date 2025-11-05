@@ -1,0 +1,9 @@
+# Ignore build output
+/build/
+*.log
+__pycache__/
+design/_pycache__
+# Ignore sensitive information
+.env
+*.npz
+*.gds
