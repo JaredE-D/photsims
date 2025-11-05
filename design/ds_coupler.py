@@ -3,6 +3,9 @@ import gdsfactory as gf
 import gplugins.gmeep as gm
 import gdsklivehelp
 import gplugins
+import pickle
+import numpy as np
+
 """
 Project Parameters 
 The goal of this project is to get better at designing photonic assets on a large scale, and sweeping over 
@@ -66,7 +69,10 @@ def build_library():
     top = gf.Component("DC_SWEEP")
     for i, p in enumerate(packed):
         top.add_ref(p).move((0, -i * 0)) # already laid out by pack
-
+        top.add_port("o1", port=p.ports["0_o1"])
+        top.add_port("o2", port=p.ports["0_o2"])
+        top.add_port("o3", port=p.ports["0_o3"])
+        top.add_port("o4", port=p.ports["0_o4"])
 
     top.write_gds(GDS_PATH)
     print(f"[OK] Wrote {GDS_PATH}")
@@ -88,18 +94,22 @@ def sim():
     )[0]
     top = gf.import_gds(GDS_PATH)
     sp = gm.write_sparameters_meep(
-        top,
+        component=top,
         resolution=20,
         is_3d=False,
-        material_name_to_meep=dict(si=core_material)
-    )   
-    
-    gplugins.plot.plot_sparameters(sp, keys=("o2@0,o1@0",))
+        material_name_to_meep=dict(si=core_material),
+        run=True,
+        ymargin=3.0,          # or y_margin=3.0 depending on your version
+        port_margin=2.0,  
+    )
+    np.savez('out/sp.npz', **sp)   
+    gplugins.plot.plot_sparameters(sp, keys=("o1@0,o2@0","o3@0,o4@0","o1@0,o1@0"))
+    gplugins.plot.plot_sparameters(sp, keys=("o1@0,o3@0", "o2@0,o4@0"))
 
 
 
 if __name__ == "__main__":
-    if False :
+    if False:
         build_library() 
     else:
         sim()
