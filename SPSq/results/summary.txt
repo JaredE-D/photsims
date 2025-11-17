@@ -1,0 +1,7 @@
+lambda0 [um]: 1.55
+ring R=2.466 um, w=0.5 um, bus w=0.5 um, gap=0.2 um
+Beta (≈ P_bus / P_total): 2255377010114.261
+Purcell proxy (P_total / P_clad): -2542489726149.93
+P_bus_device: 2.2554e+00
+P_total_device: -2.5425e+00
+P_total_cladding: -7.8029e+00

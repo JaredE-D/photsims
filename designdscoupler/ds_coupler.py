@@ -8,11 +8,8 @@ import numpy as np
 
 """
 Project Parameters 
-The goal of this project is to get better at designing photonic assets on a large scale, and sweeping over 
-multiple important parameters in order to optimize our waveguidesconda install -c conda-forge pymeep pymeep-extras.
-
+The goal of this project is to get better at designing photonic assets on a large scale, 
 In this case we will be working with a directional coupler, a basic component of photonic systems.
-
 """
 
 WAVELENGTH = 1.55
