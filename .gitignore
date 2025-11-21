@@ -4,6 +4,8 @@
 __pycache__/
 design/_pycache__/
 # Ignore sensitive information
+
 .env
+*.json
 *.npz
 *.gds
