@@ -9,3 +9,6 @@ design/_pycache__/
 *.json
 *.npz
 *.gds
+*.png
+*.h5
+*.csv
